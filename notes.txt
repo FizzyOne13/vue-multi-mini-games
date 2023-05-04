@@ -47,3 +47,57 @@ document.getElementById("myDIV").appendChild(para);
 
       //component: () => import("../views/AboutView.vue"),
     },
+
+
+    para.innerHTML = el;
+let x = document.querySelector("#my");
+console.log(x);
+//document.querySelector("#my").appendChild(para);
+
+
+mounted() {
+    this.$refs.add;
+  },
+
+
+    methods{ popSquares() {
+    for (var k = 1; k <= 1000; k++) {
+    this.$refs.add
+    }
+  }
+
+    }
+
+
+<template>
+  <ChildComponent :function="myFunction" />
+</template>
+export default {
+  methods: {
+    myFunction() {
+      // ...
+    }
+  }
+};
+
+
+
+
+// ChildComponent
+export default {
+  created() {
+    this.$emit('created');
+  }
+}
+
+
+<template>
+  <ChildComponent @created="handleCreate" />
+</template>
+export default {
+  methods: {
+    handleCreate() {
+      console.log('Child has been created.');
+    }
+  }
+};
