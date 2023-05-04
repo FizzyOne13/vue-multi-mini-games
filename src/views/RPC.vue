@@ -1,6 +1,12 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, defineProps } from "vue";
+import Modal from "../components/Modal.vue";
+const props = defineProps({
+  open: Boolean,
+});
+
+const isShown = ref(false);
 
 const wins = ref(0);
 const draws = ref(0);
@@ -125,10 +131,11 @@ onMounted(() => {
 <template>
   <div class="bg-red-400 text-white text-center min-h-screen flex flex-col">
     <header class="container mx-auto p-8">
-      <h1 class="text-5xl font-bold mb-10 mt-4">
+      <h1 class="text-5xl font-bold mb-2 mt-4">
         Rock, Paper, Scissors, Lizard and Spock
       </h1>
     </header>
+    <Modal :open="isShown" @close="isShown = !isShown"></Modal>
     <main class="container mx-auto p-8">
       <div
         v-if="choise === null"
@@ -215,7 +222,10 @@ onMounted(() => {
       <div class="text-lg text-gray-100 mt-4 hover:brightness-110">
         Win rate: {{ Math.round(winPercentage) }}%
       </div>
-      <div class="container mt-8 grid grid-rows-3 gap-y-6 justify-center">
+      <div
+        v-if="choise === null"
+        class="container mt-8 grid grid-rows-3 gap-y-6 justify-center"
+      >
         <button
           @click="isShown = true"
           class="bg-red-700 text-lg text-white py-2 px-8 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
@@ -239,37 +249,4 @@ onMounted(() => {
       </div>
     </main>
   </div>
-  <Modal :open="isShown" @close="isShown = !isShown"
-    ><p class="text-lg text-white">
-      Rock, Paper, Scissors, Lizard, Spock is a game of chance that expands the
-      traditional game of Rock, Paper, Scissors. It is first used to settle a
-      dispute about what to watch on TV between Sheldon and Raj in "The
-      Lizard-Spock Expansion". It is mentioned again in "The Rothman
-      Disintegration", where Sheldon explains the rules to Penny and Barry
-      Kripke. The game was originally created by Sam Kass with Karen Bryla.
-      According to an interview with Kass, the series producers did not
-      originally ask for permission to use the game, but Kass was officially
-      referenced by Sheldon as the creator of the game during the "The Rothman
-      Disintegration", after which he states, "Hail Sam Kass!" to which Leonard,
-      Howard, Raj, and Sheldon all then chant "Hail!" while raising their hands.
-      Scissors cuts paper. Paper covers rock. Rock crushes lizard. Lizard
-      poisons Spock. Spock smashes scissors. Scissors decapitates lizard. Lizard
-      eats paper. Paper disproves Spock. Spock vaporizes rock. Rock crushes
-      scissors.
-    </p></Modal
-  >
 </template>
-
-<script>
-//import { ref } from "vue";
-import Modal from "../components/Modal.vue";
-
-export default {
-  components: { Modal },
-  setup() {
-    const isShown = ref(false);
-
-    return { isShown };
-  },
-};
-</script>

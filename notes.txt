@@ -101,3 +101,26 @@ export default {
     }
   }
 };
+
+
+<script>
+import Modal from "../components/Modal.vue";
+export default {
+  components: { Modal },
+  setup() {
+    const isShown = ref(false);
+
+    return { isShown };
+  },
+};
+</script>
+
+
+    const handleKeyup = (event) => {
+      if (event.KeyCode === 27) {
+        close();
+      }
+    };
+
+    onMounted(() => document.addEventListener("keyup", handleKeyup));
+    onUnmounted(() => document.removeEventListener("keyup", handleKeyup));
