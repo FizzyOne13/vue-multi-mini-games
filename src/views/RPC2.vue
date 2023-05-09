@@ -1,12 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { ref, computed, onMounted, defineProps } from "vue";
-import Modal from "../components/Modal.vue";
-const props = defineProps({
-  open: Boolean,
-});
-
-const isShown = ref(false);
 
 const wins = ref(0);
 const draws = ref(0);
@@ -226,12 +220,6 @@ onMounted(() => {
         v-if="choise === null"
         class="container mt-8 grid grid-rows-3 gap-y-6 justify-center"
       >
-        <button
-          @click="isShown = true"
-          class="w-[100%] bg-red-700 text-lg text-white py-2 px-8 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
-        >
-          Show hint
-        </button>
         <RouterLink to="/home">
           <button
             @click=""
@@ -240,12 +228,12 @@ onMounted(() => {
             Go back to Multigame menu
           </button></RouterLink
         >
-        <RouterLink to="/rpc2">
-          <button
+        <RouterLink to="/rpc"
+          ><button
             @click=""
             class="w-[100%] bg-red-700 text-lg text-white py-2 px-8 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
           >
-            Switch to P2P mode
+            Switch to Single mode
           </button></RouterLink
         >
       </div>

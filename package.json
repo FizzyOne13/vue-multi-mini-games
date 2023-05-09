@@ -9,6 +9,8 @@
     "build:css": "tailwindcss -i src/components/index.css -o src/components/style.css --watch"
   },
   "dependencies": {
+    "agora-rtm-sdk": "1.6.0-205",
+    "uuid": "^9.0.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
@@ -16,6 +18,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
+    "tailwind-scrollbar": "^3.0.0",
     "tailwindcss": "^3.3.1",
     "vite": "^4.3.2"
   }

@@ -124,3 +124,13 @@ export default {
 
     onMounted(() => document.addEventListener("keyup", handleKeyup));
     onUnmounted(() => document.removeEventListener("keyup", handleKeyup));
+
+    bg-sky-700
+    bg-sky-800
+
+
+    const appendMessage = async (message) => {
+  messages.value.push({ message });
+};
+
+  appendMessage({ text: text.value, uid });
