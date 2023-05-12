@@ -2,6 +2,12 @@
 import AgoraRTM from "agora-rtm-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { nextTick, onMounted, ref } from "vue";
+import { RouterLink } from "vue-router";
+
+import Hint from "../components/Hint.vue";
+const props = defineProps({
+  open: Boolean,
+});
 
 const APP_ID = "401b849490ad43c09e30a87731b1af69";
 const CHANNEL = "roll";
@@ -10,7 +16,9 @@ const uid = uuidv4();
 let channel;
 const text = ref("");
 const messages = ref([]);
+
 const scrollRef = ref(null);
+const showHint = ref("false");
 
 const add = async () => {
   await nextTick();
@@ -28,10 +36,21 @@ onMounted(async () => {
 
 function sendMessage() {
   if (text.value === "") return;
-  channel.sendMessage({ text: text.value, type: "text" });
-  messages.value.push({ text: text.value, uid });
-  add();
-  text.value = "";
+  else if (text.value === "/roll") {
+    let num = Math.floor(Math.random() * 100);
+    channel.sendMessage({
+      text: text.value + " gave me " + num,
+      type: "number",
+    });
+    messages.value.push({ text: "I have rolled " + num, uid });
+    add();
+    text.value = "";
+  } else {
+    channel.sendMessage({ text: text.value, type: "text" });
+    messages.value.push({ text: text.value, uid });
+    add();
+    text.value = "";
+  }
 }
 </script>
 
@@ -39,6 +58,7 @@ function sendMessage() {
   <main
     class="min-w-screen min-h-screen bg-cyan-800 flex items-center justify-center"
   >
+    <Hint :open="showHint" @close="showHint = !showHint"></Hint>
     <div
       class="w-[70vh] h-[85vh] bg-sky-400 flex flex-col items-center justify-center pb-6 rounded-2xl shadow-lg shadow-blue-400 backdrop-blur-md"
     >
@@ -71,6 +91,21 @@ function sendMessage() {
           Go!
         </button>
       </form>
+      <div class="w-[100%] flex flex-row mt-6 -mb-8 space-x-[64%]">
+        <RouterLink to="/home">
+          <button
+            class="self-start ml-8 px-4 py-2 bg-gray-400 text-white shadow-sm shadow-gray-800 backdrop-blur-md rounded-lg border-[1px] border-cyan-900/80 active:border-cyan-400/80 hover:brightness-110"
+          >
+            Back
+          </button></RouterLink
+        >
+        <button
+          @click="showHint = true"
+          class="self-end px-4 py-2 bg-gray-400 text-white shadow-sm shadow-gray-800 backdrop-blur-md rounded-lg border-[1px] border-cyan-900/80 active:border-cyan-400/80 hover:brightness-110"
+        >
+          Hint
+        </button>
+      </div>
     </div>
   </main>
 </template>
