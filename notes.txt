@@ -59,3 +59,37 @@ export default {
     }
   }
 };
+
+
+deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+
+ WARN  deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+ WARN  deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+ WARN  deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+ WARN  deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+
+
+
+watchEffect(() => {
+  const socket = io(process.env.VUE_APP_SOCKET_URL);
+  setSocket(socket);
+});
+
+const socket = ref("null");
+
+
+const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
+
+'private'
+
+ const id = socket.id;
+
+
+ io.on("connection", (socket) => {
+  console.log("connected", socket.id);
+  roomStart(io, socket, rooms);
+
+  socket.on("disconnect", () => {
+    console.log("disconnected", socket.id);
+  });
+});

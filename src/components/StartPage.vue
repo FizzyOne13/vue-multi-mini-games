@@ -1,9 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import H1 from "./H1.vue";
-defineProps({
-  msg: String,
-});
 //import { rpc } from "../store/connection.js";
 </script>
 

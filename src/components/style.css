@@ -571,6 +571,14 @@ video {
   bottom: 2rem;
 }
 
+.left-4 {
+  left: 1rem;
+}
+
+.top-6 {
+  top: 1.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -605,6 +613,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.-mb-8 {
+  margin-bottom: -2rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -633,8 +645,24 @@ video {
   margin-bottom: 2rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .mt-12 {
   margin-top: 3rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-4 {
@@ -647,30 +675,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.-mb-4 {
-  margin-bottom: -1rem;
-}
-
-.-mb-6 {
-  margin-bottom: -1.5rem;
-}
-
-.-mb-8 {
-  margin-bottom: -2rem;
-}
-
-.ml-8 {
-  margin-left: 2rem;
-}
-
-.-mr-8 {
-  margin-right: -2rem;
-}
-
-.mr-8 {
-  margin-right: 2rem;
 }
 
 .box-border {
@@ -813,6 +817,10 @@ video {
   justify-content: space-between;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .gap-0 {
   gap: 0px;
 }
@@ -823,66 +831,6 @@ video {
 
 .gap-y-6 {
   row-gap: 1.5rem;
-}
-
-.space-x-60 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(15rem * var(--tw-space-x-reverse));
-  margin-left: calc(15rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-64 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(16rem * var(--tw-space-x-reverse));
-  margin-left: calc(16rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[75\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(75% * var(--tw-space-x-reverse));
-  margin-left: calc(75% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[65\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(65% * var(--tw-space-x-reverse));
-  margin-left: calc(65% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[60\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(60% * var(--tw-space-x-reverse));
-  margin-left: calc(60% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[70\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(70% * var(--tw-space-x-reverse));
-  margin-left: calc(70% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-80 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(20rem * var(--tw-space-x-reverse));
-  margin-left: calc(20rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[58\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(58% * var(--tw-space-x-reverse));
-  margin-left: calc(58% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[59\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(59% * var(--tw-space-x-reverse));
-  margin-left: calc(59% * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[62\%\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(62% * var(--tw-space-x-reverse));
-  margin-left: calc(62% * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-x-\[64\%\] > :not([hidden]) ~ :not([hidden]) {
@@ -1040,11 +988,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-blue-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-100 {
   --tw-bg-opacity: 1;
 }
@@ -1070,9 +1013,19 @@ video {
   padding-right: 4rem;
 }
 
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-8 {
@@ -1090,34 +1043,12 @@ video {
   padding-bottom: 2rem;
 }
 
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.px-24 {
-  padding-left: 6rem;
-  padding-right: 6rem;
-}
-
 .pb-6 {
   padding-bottom: 1.5rem;
 }
 
 .pl-2 {
   padding-left: 0.5rem;
-}
-
-.pl-8 {
-  padding-left: 2rem;
-}
-
-.pl-\[15\%\] {
-  padding-left: 15%;
-}
-
-.pl-\[10\%\] {
-  padding-left: 10%;
 }
 
 .text-center {
@@ -1149,6 +1080,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1159,6 +1095,10 @@ video {
 
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .tracking-wider {
@@ -1397,6 +1337,10 @@ video {
 .hover\:bg-orange-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(251 146 60 / var(--tw-bg-opacity));
+}
+
+.hover\:opacity-50:hover {
+  opacity: 0.5;
 }
 
 .hover\:opacity-80:hover {

@@ -6,6 +6,14 @@ const wins = ref(0);
 const draws = ref(0);
 const losses = ref(0);
 
+const wins_p1 = ref(0);
+const draws_p1 = ref(0);
+const losses_p1 = ref(0);
+
+const wins_p2 = ref(0);
+const draws_p2 = ref(0);
+const losses_p2 = ref(0);
+
 const choise = ref(null);
 const computerChoise = ref(null);
 const verdict = ref(null);
@@ -124,67 +132,136 @@ onMounted(() => {
 
 <template>
   <div class="bg-red-400 text-white text-center min-h-screen flex flex-col">
+    <div
+      class="absolute left-4 top-6 text-white text-xl font-semibold hover:opacity-50"
+    >
+      You're in P2P mode
+    </div>
     <header class="container mx-auto p-8">
       <h1 class="text-5xl font-bold mb-2 mt-4">
         Rock, Paper, Scissors, Lizard and Spock
       </h1>
     </header>
-    <Modal :open="isShown" @close="isShown = !isShown"></Modal>
     <main class="container mx-auto p-8">
       <div
         v-if="choise === null"
         class="flex items-center justify-center -mx-6"
       >
-        <button
-          @click="play('rock')"
-          class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-300 active:brightness-125"
-        >
-          <img
-            src="../components/icons/rock.png"
-            alt="Rock"
-            class="w-full h-full"
-          />
-        </button>
-        <button
-          @click="play('paper')"
-          class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-orange-300 active:brightness-125"
-        >
-          <img
-            src="../components/icons/paper.png"
-            alt="Paper"
-            class="w-full h-full"
-          />
-        </button>
-        <button
-          @click="play('scissors')"
-          class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-orange-400 active:brightness-125"
-        >
-          <img
-            src="../components/icons/scissors.png"
-            alt="Scissors"
-            class="w-full h-full"
-          />
-        </button>
-        <button
-          @click="play('lizard')"
-          class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-400 active:brightness-125"
-        >
-          <img
-            src="../components/icons/animal.png"
-            alt="Lizard"
-            class="w-full h-full"
-          />
-        </button>
-        <button
-          @click="play('spock')"
-          class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-300 active:brightness-125"
-        >
-          <img
-            src="../components/icons/spock.png"
-            alt="Spock"
-            class="w-full h-full"
-          />
-        </button>
+        <div class="flex flex-col">
+          <button
+            id="rock"
+            @click="play('rock')"
+            class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-300 active:brightness-125"
+          >
+            <img
+              src="../components/icons/rock.png"
+              alt="Rock"
+              class="w-full h-full"
+            />
+          </button>
+          <div class="flex justify-evenly mt-2">
+            <input type="radio" value="rock" class="" name="p1" /><input
+              type="radio"
+              value="rock"
+              class=""
+              name="p2"
+            />
+          </div>
+          <label for="p1"></label>
+          <label for="p2"></label>
+        </div>
+        <div class="flex flex-col">
+          <button
+            id="paper"
+            @click="play('paper')"
+            class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-orange-300 active:brightness-125"
+          >
+            <img
+              src="../components/icons/paper.png"
+              alt="Paper"
+              class="w-full h-full"
+            />
+          </button>
+          <div class="flex justify-evenly mt-2">
+            <input type="radio" value="paper" class="" name="p1" /><input
+              type="radio"
+              value="paper"
+              class=""
+              name="p2"
+            />
+          </div>
+          <label for="p1"></label>
+          <label for="p2"></label>
+        </div>
+        <div class="flex flex-col">
+          <button
+            id="scissors"
+            @click="play('scissors')"
+            class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-orange-400 active:brightness-125"
+          >
+            <img
+              src="../components/icons/scissors.png"
+              alt="Scissors"
+              class="w-full h-full"
+            />
+          </button>
+          <div class="flex justify-evenly mt-2">
+            <input type="radio" value="scissors" class="" name="p1" /><input
+              type="radio"
+              value="scissors"
+              class=""
+              name="p2"
+            />
+          </div>
+          <label for="p1"></label>
+          <label for="p2"></label>
+        </div>
+        <div class="flex flex-col">
+          <button
+            id="lizard"
+            @click="play('lizard')"
+            class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-400 active:brightness-125"
+          >
+            <img
+              src="../components/icons/animal.png"
+              alt="Lizard"
+              class="w-full h-full"
+            />
+          </button>
+          <div class="flex justify-evenly mt-2">
+            <input type="radio" value="lizard" class="" name="p1" /><input
+              type="radio"
+              value="lizard"
+              class=""
+              name="p2"
+            />
+          </div>
+          <label for="p1"></label>
+          <label for="p2"></label>
+        </div>
+        <div class="flex flex-col">
+          <button
+            id="spock"
+            @click="play('spock')"
+            class="bg-white rounded-full shadow-xl w-40 p-12 mx-8 transition-colors duration-300 hover:bg-amber-300 active:brightness-125"
+          >
+            <img
+              src="../components/icons/spock.png"
+              alt="Spock"
+              class="w-full h-full"
+            />
+          </button>
+          <div class="flex justify-evenly mt-2">
+            <input type="radio" value="spock" class="" name="p1" /><input
+              type="radio"
+              Value="spock"
+              class=""
+              name="p2"
+            />
+          </div>
+          <label for="p1"></label>
+          <label for="p2"></label>
+        </div>
       </div>
       <div v-else>
         <div class="text-3xl mb-4">
@@ -210,8 +287,13 @@ onMounted(() => {
           </button>
         </div>
       </div>
-      <div class="mt-12 text-3xl mb-4 hover:opacity-80">
-        {{ wins }} : {{ draws }} : {{ losses }}
+      <div class="container flex flex-row justify-center">
+        <div class="mt-12 text-3xl mb-4 hover:opacity-80 mr-4">
+          {{ wins_p1 }} : {{ draws_p1 }} : {{ losses_p1 }}
+        </div>
+        <div class="mt-12 text-3xl mb-4 hover:opacity-80 ml-4">
+          {{ wins_p2 }} : {{ draws_p2 }} : {{ losses_p2 }}
+        </div>
       </div>
       <div class="text-lg text-gray-100 mt-4 hover:brightness-110">
         Win rate: {{ Math.round(winPercentage) }}%

@@ -1,10 +1,13 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed, onMounted, defineProps } from "vue";
+import { ref, computed, onMounted, defineProps, watchEffect } from "vue";
 import Modal from "../components/Modal.vue";
+import { io } from "socket.io-client";
 const props = defineProps({
   open: Boolean,
 });
+
+const link = ref("");
 
 const isShown = ref(false);
 
@@ -107,6 +110,25 @@ const ResetNumbers = () => {
   LoadGame();
 };
 
+const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
+const ConnectRoom = (type) => {
+  socket.on("connect", (socket) => {
+    console.log(socket.id);
+    socket.emit("room:create", { type }, (err, roomId) => {
+      navigate(`/room/${roomId}`);
+    });
+  });
+  console.log(socket);
+};
+
+socket.on("room-id", (roomId) => {
+  console.log(roomId);
+});
+
+watchEffect(() => {
+  console.log(socket);
+});
+
 onMounted(() => {
   LoadGame();
 
@@ -130,6 +152,11 @@ onMounted(() => {
 
 <template>
   <div class="bg-red-400 text-white text-center min-h-screen flex flex-col">
+    <div
+      class="absolute left-4 top-6 text-white text-xl font-semibold hover:opacity-50"
+    >
+      You're in Single-player mode
+    </div>
     <header class="container mx-auto p-8">
       <h1 class="text-5xl font-bold mb-2 mt-4">
         Rock, Paper, Scissors, Lizard and Spock
@@ -242,7 +269,7 @@ onMounted(() => {
         >
         <RouterLink to="/rpc2">
           <button
-            @click=""
+            @click="ConnectRoom(type)"
             class="w-[100%] bg-red-700 text-lg text-white py-2 px-8 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
           >
             Switch to P2P mode
