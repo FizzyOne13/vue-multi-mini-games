@@ -93,3 +93,7 @@ const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
     console.log("disconnected", socket.id);
   });
 });
+
+C:Users/User/Documents/GitHub/router-test
+
+ origin: ["http://localhost:5173/rpc"], methods: ["GET", "POST"] 

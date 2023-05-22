@@ -121,13 +121,9 @@ const ConnectRoom = (type) => {
   console.log(socket);
 };
 
-socket.on("room-id", (roomId) => {
-  console.log(roomId);
-});
-
-watchEffect(() => {
-  console.log(socket);
-});
+//watchEffect(() => {
+// console.log(socket);
+//});
 
 onMounted(() => {
   LoadGame();

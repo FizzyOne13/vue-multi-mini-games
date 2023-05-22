@@ -1,6 +1,9 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed, onMounted, defineProps } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { io } from "socket.io-client";
+
+const rId = ref(null);
 
 const wins = ref(0);
 const draws = ref(0);
@@ -128,6 +131,19 @@ onMounted(() => {
     }
   });
 });
+
+const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
+socket.on("connect", (socket) => {
+  console.log(socket);
+});
+
+const getRoomId = () => {
+  socket.emit("send-id");
+  socket.on("get-d", (roomId) => {
+    const rId = roomdId.value;
+    console.log(rId);
+  });
+};
 </script>
 
 <template>
@@ -318,6 +334,22 @@ onMounted(() => {
             Switch to Single mode
           </button></RouterLink
         >
+        <div class="flex flex-row bg-red-700 text-white w-[100%] h-[100%]">
+          <input
+            ref="rId"
+            placeholder="shortID for room"
+            class="w-[60%] text-red-700 h-[100%] px-2 outline-none hover:opacity-90 focus:border-red-700 focus:border-[1px]"
+          /><button
+            @click="getRoomId(id)"
+            class="bg-red-700 text-lg text-white py-2 px-4 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
+          >
+            Get</button
+          ><button
+            class="bg-red-700 text-lg text-white py-2 px-4 border-l-[1px] border-l-white active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
+          >
+            Send
+          </button>
+        </div>
       </div>
     </main>
   </div>
