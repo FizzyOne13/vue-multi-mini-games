@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, nextTick, watch } from "vue";
 import { io } from "socket.io-client";
 
-const rId = ref(null);
+const refId = ref(null);
+const inId = ref("Unset");
+let yourId;
 
 const wins = ref(0);
 const draws = ref(0);
@@ -114,7 +116,14 @@ const ResetNumbers = () => {
 
 onMounted(() => {
   LoadGame();
+  watch(refId, (inId.value, yourId), {
+    if(yourId) {
+      inId.value = yourId;
+    },
+  });
+});
 
+const inputControl = () => {
   window.addEventListener("keypress", (e) => {
     if (e.key === "r") {
       ResetRound();
@@ -130,7 +139,25 @@ onMounted(() => {
       play("spock");
     }
   });
-});
+};
+
+const inputKeys = () => {
+  window.removeEventListener("keypress", (e) => {
+    if (e.key === "r") {
+      ResetRound();
+    } else if (e.key === "1") {
+      play("rock");
+    } else if (e.key === "2") {
+      play("paper");
+    } else if (e.key === "3") {
+      play("scissors");
+    } else if (e.key === "4") {
+      play("lizard");
+    } else if (e.key === "5") {
+      play("spock");
+    }
+  });
+};
 
 const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
 socket.on("connect", (socket) => {
@@ -138,11 +165,25 @@ socket.on("connect", (socket) => {
 });
 
 const getRoomId = () => {
-  socket.emit("send-id");
-  socket.on("get-d", (roomId) => {
-    const rId = roomdId.value;
-    console.log(rId);
+  socket.emit("ask-id");
+  socket.on("get-id", (roomId) => {
+    inId.value = roomId;
+    navigator.clipboard.writeText(inId.value);
+    alert(
+      "You have your socket-room id copied and will be displayed. Share it with your mate to connect and play. Or use theirs and press 'Send'."
+    );
   });
+};
+
+const joinRoom = () => {
+  // let yourId = inId.value;
+  // console.log(inId.value);
+  console.log(yourId.length);
+  if (yourId.length < 10 && yourId.length > 8) {
+    socket.emit("send-id", yourId);
+  } else {
+    alert("Room id should have 9 symbols");
+  }
 };
 </script>
 
@@ -336,15 +377,21 @@ const getRoomId = () => {
         >
         <div class="flex flex-row bg-red-700 text-white w-[100%] h-[100%]">
           <input
-            ref="rId"
+            @focus="inputKeys()"
+            @blur="inputControl()"
+            type="text"
+            :value="inId"
+            onchange="rewrite()"
+            ref="refId"
             placeholder="shortID for room"
-            class="w-[60%] text-red-700 h-[100%] px-2 outline-none hover:opacity-90 focus:border-red-700 focus:border-[1px]"
+            class="w-[60%] text-red-700 h-[100%] px-2 outline-none hover:opacity-90 focus:border-red-700 focus:border-[1px] hover:shadow-md"
           /><button
-            @click="getRoomId(id)"
+            @click="getRoomId()"
             class="bg-red-700 text-lg text-white py-2 px-4 active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
           >
             Get</button
           ><button
+            @click="joinRoom()"
             class="bg-red-700 text-lg text-white py-2 px-4 border-l-[1px] border-l-white active:box-content hover:opacity-90 active:brightness-110 hover:shadow-md active:border-2 active:border-amber-950"
           >
             Send

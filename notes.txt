@@ -97,3 +97,54 @@ const socket = io(import.meta.env.VITE_VUE_APP_SOCKET_URL);
 C:Users/User/Documents/GitHub/router-test
 
  origin: ["http://localhost:5173/rpc"], methods: ["GET", "POST"] 
+
+ const rId = roomId.value;
+
+ .to(socket)
+
+  ref="refId"
+
+  
+onMounted(() => {
+  inputControl();
+});
+
+if (e.key === "r") {
+      ResetRound();
+    } else if (e.key === "1") {
+      play("rock");
+    } else if (e.key === "2") {
+      play("paper");
+    } else if (e.key === "3") {
+      play("scissors");
+    } else if (e.key === "4") {
+      play("lizard");
+    } else if (e.key === "5") {
+      play("spock");
+    }
+
+    .emit("ready", function () {
+    console.log("Socket now in rooms", socket.rooms);
+  })
+
+   socket.on("ready", (socket) => {
+    console.log(socket.id);
+  });
+
+  const joinRoom = () => {
+  let yourId = inId.value;
+  if (yourId.length === 9) {
+    socket.emit("send-id", yourId);
+  } else {
+    alert("Room id should have 9 symbols");
+  }
+};
+
+nextTick().
+
+ onchange="trackLength()"
+
+refId.value.addEventListener("keypress", () => {
+    yourId = inId.value;
+    console.log(yourId);
+  });

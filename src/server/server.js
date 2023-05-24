@@ -24,16 +24,27 @@ const io = new Server(httpServer, {
 });
 
 //const rooms = [];
+let room = null;
 
 io.on("connection", (socket) => {
   console.log("connected", socket.id);
-  const roomId = shortId.generate();
-  socket.on("send-id", (socket) => {
-    console.log(roomId);
-    socket.to(socket.id).emit("get-id", roomId);
+
+  socket.on("ask-id", (data) => {
+    console.log(data);
+    const roomId = shortId.generate();
+    io.emit("get-id", roomId);
+    console.log(
+      "Socket with id " + socket.id + " got random room id " + roomId
+    );
+    room = roomId;
   });
-  console.log(roomId);
-  // socket.join(roomId);
+
+  socket.on("send-id", (yourId) => {
+    console.log(
+      "Socket with id" + socket.id + " joined room with id " + yourId
+    );
+    socket.join(yourId);
+  });
 
   socket.on("disconnect", () => {
     console.log("disconnected", socket.id);
